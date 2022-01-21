@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
-
-namespace Modules.FXPlayer
+namespace NebusokuDev.FXPlayer.Runtime
 {
     public interface IFxPlayer
     {

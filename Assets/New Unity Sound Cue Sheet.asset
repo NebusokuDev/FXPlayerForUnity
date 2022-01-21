@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56aae76bc2934443af9c628bf1a366c3, type: 3}
+  m_Name: New Unity Sound Cue Sheet
+  m_EditorClassIdentifier: 
+  audioCues:
+  - cueName: Footstep
+    audioClips:
+    - {fileID: 8300000, guid: 9e30d4a98224ad34c8f0dd86542ca5ba, type: 3}
+    - {fileID: 8300000, guid: b70e5e60f0faa6d4bb427dc6a18317fa, type: 3}
+    - {fileID: 8300000, guid: 6afed6aff6f40cd4cac15e7067ad9760, type: 3}
+    - {fileID: 8300000, guid: aab25dd3964e34c4798110ccb63f2550, type: 3}
+    - {fileID: 8300000, guid: b2d5ee2da21bec54fb7113051f387d05, type: 3}
+    - {fileID: 8300000, guid: 8ea916c1c236b884d8d5d0c107e71f17, type: 3}
+    - {fileID: 8300000, guid: 39ee213cdbcd6884a861d3d724bc1852, type: 3}
+    - {fileID: 8300000, guid: 43b7a6cf98208b44a99b35246f670cb3, type: 3}
+    - {fileID: 8300000, guid: 46de5b0ff91e11c47bebbd4244b2b2f5, type: 3}
+    - {fileID: 8300000, guid: 79c26d1ca751bd94db64817c86ba1a56, type: 3}
+    audioGroup: {fileID: 0}
+    minVolume: 86.4
+    maxVolume: 100
+    minPitch: -200
+    maxPitch: 200
+    spatialBlend: 63.5
+    polyphony: 10
+    delay: 0
+    looping: 0
+  - cueName: Jump
+    audioClips:
+    - {fileID: 8300000, guid: 99ab8a4503de1f448ad764a5c4cdf9cc, type: 3}
+    audioGroup: {fileID: 0}
+    minVolume: 86.4
+    maxVolume: 100
+    minPitch: -100
+    maxPitch: 100
+    spatialBlend: 63.5
+    polyphony: 10
+    delay: 0
+    looping: 0
+  - cueName: Land
+    audioClips:
+    - {fileID: 8300000, guid: c212aa2d646dfe248b7c96b4f0e4cb27, type: 3}
+    audioGroup: {fileID: 0}
+    minVolume: 86.4
+    maxVolume: 100
+    minPitch: -100
+    maxPitch: 100
+    spatialBlend: 63.5
+    polyphony: 10
+    delay: 0
+    looping: 0
