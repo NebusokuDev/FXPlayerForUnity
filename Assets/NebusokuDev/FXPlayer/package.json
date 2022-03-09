@@ -5,8 +5,9 @@
   "description": "Effect PLay Framework",
   "unity": "2019.4",
   "keywords": [
-    "Sound",
-    "Vissual Effect"
+    "Audio",
+    "Vissual Effect Graph",
+    "Particle System"
   ],
   "license": "MIT",
   "dependencies": {},

@@ -5,7 +5,7 @@ using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 
-namespace NebusokuDev.FXPlayer.Runtime.Visual
+namespace NebusokuDev.FXPlayer.Runtime.Effect
 {
     [Serializable]
     public class EffectCue

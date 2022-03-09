@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
-
-namespace NebusokuDev.FXPlayer.Runtime.Visual
+namespace NebusokuDev.FXPlayer.Runtime.Effect
 {
     [CreateAssetMenu(menuName = "FxPlayer/Effect/EffectCueSheet")]
     public class EffectCueSheet : ScriptableObject

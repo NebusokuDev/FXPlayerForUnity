@@ -1,16 +1,17 @@
 # FXPlayer For Unity
 
-サウンドとパーティクルをするためのライブラリです。
+サウンドとパーティクルをADX2のように扱うことが出来るライブラリです。
 
-# Install
-## via OpenUPM
+<!-- # Install
+<!-- ## via OpenUPM
 ```text
 openupm add .git
-```
-## via git URL
+``` -->
+## via git URL -->
 
 
 # License
+MIT License
 
 
 - Author: NubusokuDev

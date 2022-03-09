@@ -1,5 +1,5 @@
 ﻿using System;
-using CMF;
+using IgnoreAssets.Character_Movement_Fundamentals.Source.Scripts.Controllers;
 using UnityEngine;
 
 namespace NebusokuDev.FXPlayer.Runtime.FootStep

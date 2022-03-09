@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
-
-namespace NebusokuDev.FXPlayer.Runtime.Visual
+namespace NebusokuDev.FXPlayer.Runtime.Effect
 {
     public class VFXEffect : EffectBase
     {

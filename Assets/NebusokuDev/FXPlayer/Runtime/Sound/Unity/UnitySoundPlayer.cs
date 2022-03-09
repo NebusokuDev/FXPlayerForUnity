@@ -8,7 +8,6 @@ namespace NebusokuDev.FXPlayer.Runtime.Sound.Unity
         [SerializeField, Range(0f, 1f)] private float volume = 1f;
         [SerializeField] private bool playAtParent;
         [SerializeField] private bool isMute;
-        [SerializeField] private string playOnAwakeCueName;
 
 
         private Transform _self;
@@ -17,13 +16,6 @@ namespace NebusokuDev.FXPlayer.Runtime.Sound.Unity
         {
             _self = transform;
             SetMute(isMute);
-        }
-
-        private void Start()
-        {
-            if (string.IsNullOrEmpty(playOnAwakeCueName)) return;
-
-            Play(playOnAwakeCueName);
         }
 
         public override void Play(string fxName) => Play(fxName, _self.position);

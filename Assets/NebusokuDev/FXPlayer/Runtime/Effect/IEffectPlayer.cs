@@ -1,4 +1,4 @@
-﻿namespace NebusokuDev.FXPlayer.Runtime.Visual
+﻿namespace NebusokuDev.FXPlayer.Runtime.Effect
 {
     public interface IEffectPlayer : IFxPlayer
     {
