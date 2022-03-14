@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.VFX;
 
 namespace NebusokuDev.FXPlayer.Runtime.Effect
 {
@@ -6,8 +7,11 @@ namespace NebusokuDev.FXPlayer.Runtime.Effect
     {
         [SerializeField] private string startEventName = "OnStart";
         [SerializeField] private string stopEventName = "OnStop";
-        
-        public override void Play(Vector3 position, Quaternion rotation, Transform parent) {}
+        [SerializeField] private VisualEffect vfx;
+        public override void Play(Vector3 position, Quaternion rotation, Transform parent)
+        {
+            
+        }
 
 
         public override void Stop() {}
