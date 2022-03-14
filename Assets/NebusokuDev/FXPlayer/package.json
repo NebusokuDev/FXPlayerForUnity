@@ -11,9 +11,15 @@
   ],
   "license": "MIT",
   "dependencies": {},
-  "samples": [],
+  "samples": [
+    {
+      "displayName": "Foot Step Play System",
+      "description": "Foot Step Play System",
+      "path": "Samples/StarterKit"
+    }
+  ],
   "author": {
     "name": "NeubsokuDev",
-    "email": "s1812501@s.do-johodai.ac.jp"
+    "email": "otoro180yen@gmail.com"
   }
 }

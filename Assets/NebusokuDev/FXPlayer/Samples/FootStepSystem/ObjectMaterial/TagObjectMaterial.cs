@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace NebusokuDev.FXPlayer.Runtime.ObjectMaterial
+namespace NebusokuDev.FXPlayer.Samples.FootStepSystem.ObjectMaterial
 {
     public class TagObjectMaterial : MonoBehaviour, IObjectMaterial
     {

@@ -1,7 +1,7 @@
 ﻿using NebusokuDev.FXPlayer.Runtime.Sound;
 using UnityEngine;
 
-namespace NebusokuDev.FXPlayer.Runtime.FootStep
+namespace NebusokuDev.FXPlayer.Samples.FootStepSystem
 {
     public class FootStepPlayer : MonoBehaviour
     {
