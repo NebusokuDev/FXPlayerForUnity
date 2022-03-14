@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using static UnityEditor.EditorGUI;
 
-namespace NebusokuDev.Smith.Editor
+namespace NebusokuDev.FXPlayer.Editor
 {
     [CustomPropertyDrawer(typeof(TagFieldAttribute))]
     public class TagFieldDrawer : PropertyDrawer

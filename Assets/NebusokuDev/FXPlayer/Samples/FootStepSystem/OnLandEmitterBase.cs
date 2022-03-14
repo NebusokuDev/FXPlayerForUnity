@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace NebusokuDev.FXPlayer.Runtime.FootStep
+namespace NebusokuDev.FXPlayer.Samples.FootStepSystem
 {
 
     delegate void OnLand();

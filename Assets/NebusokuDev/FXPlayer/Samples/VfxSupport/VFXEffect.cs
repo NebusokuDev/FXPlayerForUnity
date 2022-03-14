@@ -1,22 +1,24 @@
-﻿using UnityEngine;
+﻿using NebusokuDev.FXPlayer.Runtime.Effect;
+using UnityEngine;
 using UnityEngine.VFX;
 
-namespace NebusokuDev.FXPlayer.Runtime.Effect
+namespace NebusokuDev.FXPlayer.Samples.VfxSupport
 {
     public class VFXEffect : EffectBase
     {
-        [SerializeField] private string startEventName = "OnStart";
-        [SerializeField] private string stopEventName = "OnStop";
         [SerializeField] private VisualEffect vfx;
+
         public override void Play(Vector3 position, Quaternion rotation, Transform parent)
         {
-            
+            self.position = position;
+            self.rotation = rotation;
+            self.parent = parent;
+            vfx.Play();
         }
 
 
-        public override void Stop() {}
+        public override void Stop() => vfx.Stop();
 
-
-        public override bool IsPlaying { get; }
+        public override bool IsPlaying => vfx.culled;
     }
 }

@@ -1,7 +1,9 @@
 ﻿namespace NebusokuDev.FXPlayer.Runtime
 {
-    public class Cue<T>
+    public abstract class CueBase<T>
     {
-        void Play();
+        public abstract string GetName();
+        public abstract void Play();
+        public abstract void Stop();
     }
 }

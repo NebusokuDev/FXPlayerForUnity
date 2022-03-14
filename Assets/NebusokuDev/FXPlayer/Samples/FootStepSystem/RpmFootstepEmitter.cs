@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace NebusokuDev.FXPlayer.Runtime.FootStep
+namespace NebusokuDev.FXPlayer.Samples.FootStepSystem
 {
     public class RpmFootstepEmitter : FootStepEmitterBase
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NebusokuDev.FXPlayer.Runtime.FootStep
+namespace NebusokuDev.FXPlayer.Samples.FootStepSystem
 {
     public class GroundEmitter : GroundEmitterBase
     {

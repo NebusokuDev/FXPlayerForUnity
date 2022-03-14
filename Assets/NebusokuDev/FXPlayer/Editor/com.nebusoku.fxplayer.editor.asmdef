@@ -1,0 +1,16 @@
+{
+    "name": "com.nebusoku.fxplayer.editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:dd4e10269300f33488e7cff1b85abed3"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
