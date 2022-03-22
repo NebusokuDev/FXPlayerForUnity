@@ -12,12 +12,16 @@ namespace NebusokuDev.FXPlayer.Runtime.Sound.Unity
     {
         [SerializeField] private string cueName;
         [SerializeField] private AudioClip[] audioClips;
-        [SerializeField] private AudioMixerGroup audioGroup;
+        [SerializeField] private AudioMixerGroup audioMixerGroup;
 
-        [SerializeField, Range(0, 100f)] private float minVolume;
-        [SerializeField, Range(0f, 100f)] private float maxVolume;
+        [Header("Pitch")] [SerializeField, Range(0, 100f)]
+        private float minVolume = 0.8f;
 
-        [SerializeField, Range(-1200f, 1200f)] private float minPitch;
+        [SerializeField, Range(0f, 100f)] private float maxVolume = 1f;
+
+        [Header("Pitch")] [SerializeField, Range(-1200f, 1200f)]
+        private float minPitch;
+
         [SerializeField, Range(-1200f, 1200f)] private float maxPitch;
 
         [SerializeField, Range(0f, 100f)] private float spatialBlend = 100f;
@@ -35,27 +39,29 @@ namespace NebusokuDev.FXPlayer.Runtime.Sound.Unity
 
         public void OnValidate()
         {
-            if (maxVolume < minVolume) maxVolume = minVolume;
+            // pitch sort
+            (minPitch, maxPitch) = minPitch > maxPitch ? (maxPitch, minPitch) : (minPitch, maxPitch);
 
-            if (maxPitch < minPitch) maxPitch = minPitch;
+            // volume sort
+            (minVolume, maxVolume) = minVolume > maxVolume ? (maxVolume, minVolume) : (minVolume, maxVolume);
         }
 
-        public void Play(float playerVolume, Vector3 position, Transform parent)
+        public AudioSource Play(float playerVolume, Vector3 position, Transform parent)
         {
-            var src = GetAudioSource();
-            
-            
-            var t = src.transform;
+            var playingSrc = GetAudioSource();
+
+
+            var t = playingSrc.transform;
             t.position = position;
             t.parent = parent;
-            
-            src.clip = SelectClip;
-            src.outputAudioMixerGroup = audioGroup;
-            src.pitch = OutputPitch;
-            src.spatialize = true;
+
+            playingSrc.clip = SelectClip;
+            playingSrc.outputAudioMixerGroup = audioMixerGroup;
+            playingSrc.pitch = OutputPitch;
+            playingSrc.spatialize = true;
 
 
-            src.PlayDelayed(delay);
+            playingSrc.PlayDelayed(delay);
 
             var srcCount = _audioSources.Count - 1;
 
@@ -67,6 +73,8 @@ namespace NebusokuDev.FXPlayer.Runtime.Sound.Unity
                 audioSource.loop = looping;
                 srcCount--;
             }
+
+            return playingSrc;
         }
 
         public void Stop()
@@ -88,7 +96,7 @@ namespace NebusokuDev.FXPlayer.Runtime.Sound.Unity
         private AudioSource GetAudioSource()
         {
             _audioSources ??= new Queue<AudioSource>();
-            
+
 
             if (_audioSources.Count >= polyphony && _audioSources.Any())
             {
