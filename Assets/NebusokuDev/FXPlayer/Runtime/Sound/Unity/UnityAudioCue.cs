@@ -14,22 +14,22 @@ namespace NebusokuDev.FXPlayer.Runtime.Sound.Unity
         [SerializeField] private AudioClip[] audioClips;
         [SerializeField] private AudioMixerGroup audioMixerGroup;
 
-        [Header("Pitch")] [SerializeField, Range(0, 100f)]
-        private float minVolume = 0.8f;
+        [Header("Pitch")] 
+        [SerializeField, Range(0, 100f)] private float minVolume = 0.8f;
 
         [SerializeField, Range(0f, 100f)] private float maxVolume = 1f;
 
-        [Header("Pitch")] [SerializeField, Range(-1200f, 1200f)]
-        private float minPitch;
+        [Header("Pitch")] 
+        [SerializeField, Range(-1200f, 1200f)] private float minPitch;
 
         [SerializeField, Range(-1200f, 1200f)] private float maxPitch;
-
+        
         [SerializeField, Range(0f, 100f)] private float spatialBlend = 100f;
-
+        
         [Header("Polyphony")]
-        [SerializeField, Range(0, 1000)] private int polyphony = 10;
-        [SerializeField] private AnimationCurve polyphonyDecayCurve = AnimationCurve.EaseInOut(0f, 1f, 1f, 0.1f);
-
+        [SerializeField] private int polyphony = 10;
+        [SerializeField] private AnimationCurve polyphonyDecayCurve;
+        
         [SerializeField] private float delay;
         [SerializeField] private bool looping;
 
@@ -67,13 +67,12 @@ namespace NebusokuDev.FXPlayer.Runtime.Sound.Unity
 
             playingSrc.PlayDelayed(delay);
 
-            int srcCount = 01;
+            var srcCount = _audioSources.Count - 1;
 
             foreach (var audioSource in _audioSources)
             {
-                audioSource.volume = playerVolume * OutputVolume *
-                                     polyphonyDecayCurve.Evaluate((float) srcCount / _audioSources.Count);
-
+                // -1dbは音量が1/3なので3のn乗で音量を減らす
+                audioSource.volume = playerVolume * OutputVolume / Mathf.Pow(3f, srcCount);
                 audioSource.spatialBlend = OutputSpatialBlend;
                 audioSource.loop = looping;
                 srcCount--;
@@ -103,7 +102,7 @@ namespace NebusokuDev.FXPlayer.Runtime.Sound.Unity
             _audioSources ??= new Queue<AudioSource>();
 
 
-            if (_audioSources.Count >= polyphony && polyphony > 0 && _audioSources.Any())
+            if (_audioSources.Count >= polyphony && _audioSources.Any())
             {
                 var source = _audioSources.Dequeue();
                 source.Stop();
