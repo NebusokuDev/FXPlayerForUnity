@@ -8,8 +8,7 @@ namespace NebusokuDev.FXPlayer.Runtime.Sound.Unity
         [SerializeField, Range(0f, 1f)] private float volume = 1f;
         [SerializeField] private bool playAtParent;
         [SerializeField] private bool isMute;
-
-
+        
         private Transform _self;
 
         private void Awake()

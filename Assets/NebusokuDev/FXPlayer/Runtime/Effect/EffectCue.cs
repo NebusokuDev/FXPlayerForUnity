@@ -19,6 +19,14 @@ namespace NebusokuDev.FXPlayer.Runtime.Effect
 
         public string CueName => cueName;
 
+        public void OnValidate()
+        {
+            minScale = Mathf.Clamp(minScale, 0f, minScale);
+            maxScale = Mathf.Clamp(maxScale, 0f, maxScale);
+
+            (minScale, maxScale) = minScale > maxScale ? (maxScale, minScale) : (minScale, maxScale);
+        }
+
 
         private IEffect Effect
         {
@@ -59,7 +67,6 @@ namespace NebusokuDev.FXPlayer.Runtime.Effect
 
             effect.Play(position, rotation, sticky ? parent : null);
         }
-
 
         public void Stop()
         {

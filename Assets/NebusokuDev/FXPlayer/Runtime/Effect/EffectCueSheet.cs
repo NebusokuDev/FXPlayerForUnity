@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace NebusokuDev.FXPlayer.Runtime.Effect
 {
@@ -6,6 +7,14 @@ namespace NebusokuDev.FXPlayer.Runtime.Effect
     public class EffectCueSheet : ScriptableObject
     {
         [SerializeField] private EffectCue[] effectCues;
+
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            foreach (var effectCue in effectCues) effectCue.OnValidate();
+        }
+#endif
 
         public EffectCue this[string cueName]
         {

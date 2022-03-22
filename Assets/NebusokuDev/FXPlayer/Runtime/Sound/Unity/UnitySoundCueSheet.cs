@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace NebusokuDev.FXPlayer.Runtime.Sound.Unity
 {
-    [CreateAssetMenu(menuName = "FxPlayer/Sound/" + nameof(UnitySoundPlayer))]
+    [CreateAssetMenu(menuName = "FxPlayer/Sound/" + nameof(UnitySoundCueSheet))]
     public class UnitySoundCueSheet : ScriptableObject, IEnumerable<UnityAudioCue>
     {
         [SerializeField] private UnityAudioCue[] audioCues;
