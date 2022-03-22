@@ -57,10 +57,12 @@ UnitySoundPlayerはUnityビルトインのサウンド再生機能である`Audi
 
 1. `Assets/Create/FxPlayer/Sound/UnitySoundCueSheet`からCueSheetを作成します。
 2. Cueを作成します。FxPlayerにおける再生の1単位になります。
-3. CueNameを命名します。
-4. 使用したいAudioClipを
-5. 最大音量と最小音量を設定します。CueSheetとUnitySoundPlayerのボリュームをかけ合わせた仮想の音量になります。
-6. 最大のピッチと最低のピッチを設定します。単位は`Cent`で1Centは半音の`1/100`となり、`1200Cent`で1オクターブになります。
+3. CueNameを設定します。
+4. 使用したいAudioClipを追加します。追加されたAudioClipは再生時、ランダム再生されます。
+5. AudioMixerGroupの設定をします。再生時に選択された`AudioSource`に適応されます。
+6. 最大音量と最小音量を設定します。CueSheetとUnitySoundPlayer、AudioMixerVolumeのボリュームをかけ合わせた仮想の音量になります。
+7. 最大のピッチと最低のピッチを設定します。単位は`Cent`で1Centは半音の`1/100`となり、`1200Cent`で1オクターブになります。
+8. 同時再生数を設定します。同時再生数を0に設定すると無制限になります。
 
 ### EffectPlayer
 EffectPlayerはパーティクルエフェクトを再生するためのFxPlayerです。`IEffect`実装したコンポーネントをアタッチしたパーティクルエフェクトを再生できます。
@@ -70,23 +72,23 @@ EffectPlayerはパーティクルエフェクトを再生するためのFxPlayer
 2. Projectにドラッグ・アンド・ドロップし、Prefab化します。
 
 #### CueSheetの作成
-1. `Assets/Create/FxPlayer/Sound/EffectCueSheet`からEffectCueSheetを作成します。
+1. `Assets/Create/FxPlayer/Effect/EffectCueSheet`からEffectCueSheetを作成します。
 2. Cueを作成します。FxPlayerにおける再生の1単位になります。
 3. CueNameを設定します。
-
-
-
+4. Transform.localScaleに対応した、最大スケールと最小スケールを設定します。
 # Contribute
 
 このリポジトリでは以下の協力を募集しています。
 
 - READMEやライブラリのリファレンス等、ドキュメントの整備と翻訳
-    - ココがわかりにくい、詳細に書いてほしい、実際に修正したなどがあればREADMEに追加します。
-    - 英語があんまり得意ではないのでやっていただけるととても助かります。
 - バグ報告と修正
-  - 
-- 新機能の提案と実装
-    - 飛び上がるほど嬉しいです。
+- 新機能の提案と実装 
+- かっこよくて、機能がわかりやすいライブラリ名
+ココがわかりにくい、詳細に書いてほしい、実際に修正したなどがあればREADMEに追加します。
+
+## 参加方法
+1. このリポジトリをフォークしてください。
+2. 変更に対してプルリクエストを送ってください。
 
 # Author Info
 
