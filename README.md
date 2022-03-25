@@ -26,7 +26,7 @@ FxPlayerを使用するためには、以下の環境が必須になります。
 git urlを利用してインストールすることができます。 インストールする場合は、 パッケージマネージャの`Add package from git URL...`に以下のurlを入力してください。
 
 ```text
-https://github.com/NebusokuDev/Smith.git?path=Assets/NebusokuDev/FXPlayer
+https://github.com/NebusokuDev/FXPlayer.git?path=Assets/NebusokuDev/FXPlayer
 ```
 
 ### OpenUPMを使う
