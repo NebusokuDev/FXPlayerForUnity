@@ -5,10 +5,10 @@ using UnityEngine;
 namespace NebusokuDev.FXPlayer.Runtime.Sound.Unity
 {
     [CreateAssetMenu(menuName = "FxPlayer/Sound/" + nameof(UnitySoundCueSheet))]
-    public class UnitySoundCueSheet : ScriptableObject, IEnumerable<UnityAudioCue>
+    public class UnitySoundCueSheet : CueSheetBase<UnityAudioCue>, IEnumerable<UnityAudioCue>
     {
         [SerializeField] private UnityAudioCue[] audioCues;
-        
+
         private void OnValidate()
         {
             foreach (var audioCue in audioCues) audioCue.OnValidate();
@@ -16,7 +16,7 @@ namespace NebusokuDev.FXPlayer.Runtime.Sound.Unity
 
         private IEnumerable<UnityAudioCue> AudioCues => audioCues;
 
-        public UnityAudioCue this[string cueName]
+        public override UnityAudioCue this[string cueName]
         {
             get
             {
