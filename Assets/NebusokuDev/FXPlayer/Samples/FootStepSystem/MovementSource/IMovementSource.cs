@@ -1,9 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-namespace NebusokuDev.FXPlayer.Samples.FootStepSystem
+namespace NebusokuDev.FXPlayer.Samples.FootStepSystem.MovementSource
 {
-    public interface IMover
+    public interface IMovementSource
     {
         Vector3 Velocity { get; }
         bool IsGrounded { get; }
