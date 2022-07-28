@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 namespace NebusokuDev.FXPlayer.Runtime.Effect
 {
     [Serializable]
-    public class EffectCue
+    public class EffectCue : CueBase<IEffect>
     {
         [SerializeField] private string cueName;
         [SerializeField] private EffectBase[] effects;
@@ -17,7 +17,7 @@ namespace NebusokuDev.FXPlayer.Runtime.Effect
         [SerializeField] private bool sticky;
         private List<IEffect> _effectList;
 
-        public string CueName => cueName;
+        public override string CueName => cueName;
 
         public void OnValidate()
         {
@@ -60,7 +60,7 @@ namespace NebusokuDev.FXPlayer.Runtime.Effect
         }
 
 
-        public void Play(Vector3 position, Quaternion rotation, Transform parent)
+        public override void Play(Vector3 position, Quaternion rotation, Transform parent)
         {
             var effect = Effect;
             if (effect == null) return;
@@ -68,7 +68,7 @@ namespace NebusokuDev.FXPlayer.Runtime.Effect
             effect.Play(position, rotation, sticky ? parent : null);
         }
 
-        public void Stop()
+        public override void Stop()
         {
             foreach (var effect in _effectList)
             {

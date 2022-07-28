@@ -1,5 +1,8 @@
-﻿using NebusokuDev.FXPlayer.Samples.FootStepSystem.ObjectMaterial;
+﻿using System;
+using NebusokuDev.FXPlayer.Samples.FootStepSystem.ObjectMaterial;
 using UnityEngine;
+using static UnityEngine.QueryTriggerInteraction;
+using static UnityEngine.Physics;
 
 namespace NebusokuDev.FXPlayer.Samples.FootStepSystem.Audio
 {
@@ -7,19 +10,20 @@ namespace NebusokuDev.FXPlayer.Samples.FootStepSystem.Audio
     {
         // collision
         [SerializeField] private LayerMask collisionMask = -1;
-        [SerializeField] private float collisionDistance = 1f;
+        [SerializeField] private float collisionDistance = 2f;
         [SerializeField] private float collisionRadius = .5f;
+        [SerializeField] private Vector3 collisionOffset;
 
         // footstep cues
-        [SerializeField] private string footstepCueFormat = "FootStep-{0}-{1}";
+        [SerializeField] private string footstepCueFormat = "FootStep_{0}_{1}";
         [SerializeField] private string fallbackFootStepCueName = "FootStep";
 
         // jump cues
-        [SerializeField] private string jumpCueFormat = "FootStep-{0}-{1}";
+        [SerializeField] private string jumpCueFormat = "Jump_{0}_{1}";
         [SerializeField] private string fallbackJumpCueName = "Jump";
 
         // land cues
-        [SerializeField] private string landCueFormat = "FootStep-{0}-{1}";
+        [SerializeField] private string landCueFormat = "Land_{0}_{1}";
         [SerializeField] private string fallbackLandCueName = "Land";
 
         private string _state;
@@ -32,51 +36,48 @@ namespace NebusokuDev.FXPlayer.Samples.FootStepSystem.Audio
         {
             mat = string.Empty;
 
-            var ray = new Ray(self.position, -self.up);
+            var ray = new Ray(self.position + collisionOffset, -self.up);
 
-            if (Physics.SphereCast(ray, collisionRadius, out var hit, collisionDistance, collisionMask) == false)
+            if (SphereCast(ray, collisionRadius, out var hit, collisionDistance, collisionMask, Ignore) == false)
             {
                 return false;
             }
 
-            if (hit.collider.TryGetComponent(out IObjectMaterial material) == false) return false;
+            if (hit.transform.TryGetComponent(out IObjectMaterial material) == false) return false;
 
             mat = material.GetMaterial(hit.point);
+
             return true;
         }
 
-        protected override void OnFootStep()
+        protected override void OnFootStep() => PlaySound(footstepCueFormat, fallbackFootStepCueName);
+
+        protected override void OnLand(Vector3 velocity) => PlaySound(landCueFormat, fallbackLandCueName);
+
+        protected override void OnJump(Vector3 velocity) => PlaySound(jumpCueFormat, fallbackJumpCueName);
+
+        private void PlaySound(string format, string fallBackCueName)
         {
             if (TryGetMaterial(out var mat))
             {
-                soundPlayer.Play(string.Format(footstepCueFormat, mat, _state));
+                var cue = string.Format(format, mat, _state);
+
+                Debug.Log($"cue: {cue}");
+                soundPlayer.Play(cue);
                 return;
             }
 
-            soundPlayer.Play(fallbackFootStepCueName);
+            soundPlayer.Play(fallBackCueName);
         }
 
-        protected override void OnLand(Vector3 velocity)
+#if UNITY_EDITOR
+        private void OnDrawGizmos()
         {
-            if (TryGetMaterial(out var mat))
-            {
-                soundPlayer.Play(string.Format(footstepCueFormat, mat, _state));
-                return;
-            }
+            var ray = new Ray(transform.position, -transform.up);
 
-            soundPlayer.Play(fallbackFootStepCueName);
+            Gizmos.DrawRay(transform.position + collisionOffset, -transform.up * collisionDistance);
         }
-
-        protected override void OnJump(Vector3 velocity)
-        {
-            if (TryGetMaterial(out var mat))
-            {
-                soundPlayer.Play(string.Format(footstepCueFormat, mat, _state));
-                return;
-            }
-
-            soundPlayer.Play(fallbackFootStepCueName);
-        }
+#endif
 
         public void SetState(string state) => _state = state ?? string.Empty;
     }

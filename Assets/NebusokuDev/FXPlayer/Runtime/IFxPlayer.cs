@@ -7,7 +7,6 @@ namespace NebusokuDev.FXPlayer.Runtime
         void Play(string fxName);
 
         void Play(string fxName, Vector3 position);
-
         void Play(string fxName, Vector3 position, Transform parent);
 
         void Stop(string fxName);

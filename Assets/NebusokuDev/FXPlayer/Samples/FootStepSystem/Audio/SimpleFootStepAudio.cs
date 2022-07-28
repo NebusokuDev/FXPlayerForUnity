@@ -4,7 +4,7 @@ namespace NebusokuDev.FXPlayer.Samples.FootStepSystem.Audio
 {
     public sealed class SimpleFootStepAudio : FootStepAudioBase
     {
-        [SerializeField] private string footstepCueName = "Footstep";
+        [SerializeField] private string footstepCueName = "FootStep";
         [SerializeField] private string landCueName = "Land";
         [SerializeField] private string jumpCueName = "Jump";
 

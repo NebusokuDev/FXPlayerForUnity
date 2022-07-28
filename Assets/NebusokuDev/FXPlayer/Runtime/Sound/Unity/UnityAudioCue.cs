@@ -8,32 +8,31 @@ using static UnityEngine.Random;
 namespace NebusokuDev.FXPlayer.Runtime.Sound.Unity
 {
     [Serializable]
-    public class UnityAudioCue
+    public class UnityAudioCue : CueBase<AudioClip>
     {
         [SerializeField] private string cueName;
         [SerializeField] private AudioClip[] audioClips;
         [SerializeField] private AudioMixerGroup audioMixerGroup;
 
-        [Header("Pitch")] 
-        [SerializeField, Range(0, 100f)] private float minVolume = 0.8f;
+        [Header("Pitch")] [SerializeField, Range(0, 100f)]
+        private float minVolume = 0.8f;
 
         [SerializeField, Range(0f, 100f)] private float maxVolume = 1f;
 
-        [Header("Pitch")] 
-        [SerializeField, Range(-1200f, 1200f)] private float minPitch;
+        [Header("Pitch")] [SerializeField, Range(-1200f, 1200f)]
+        private float minPitch;
 
         [SerializeField, Range(-1200f, 1200f)] private float maxPitch;
-        
+
         [SerializeField, Range(0f, 100f)] private float spatialBlend = 100f;
-        
-        [Header("Polyphony")]
-        [SerializeField] private int polyphony = 10;
-        [SerializeField] private AnimationCurve polyphonyDecayCurve;
-        
+
+        [Header("Polyphony")] [SerializeField] private int polyphony = 10;
+        // [SerializeField] private AnimationCurve polyphonyDecayCurve;
+
         [SerializeField] private float delay;
         [SerializeField] private bool looping;
 
-        public string CueName => cueName;
+        public override string CueName => cueName;
 
         private const float Octave = 1200f;
 
@@ -81,7 +80,11 @@ namespace NebusokuDev.FXPlayer.Runtime.Sound.Unity
             return playingSrc;
         }
 
-        public void Stop()
+
+        public override void Play(Vector3 position, Quaternion rotation, Transform parent) {}
+
+
+        public override void Stop()
         {
             _audioSources ??= new Queue<AudioSource>();
             foreach (var audioSource in _audioSources) audioSource.Stop();

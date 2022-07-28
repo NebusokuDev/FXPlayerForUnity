@@ -10,7 +10,7 @@ namespace NebusokuDev.FXPlayer.Samples.FootStepSystem.Emitter
         [SerializeField] private float rpm = 120f;
         public override event Action OnFootStep;
 
-        [SerializeField] private float tickTime;
+        private float _elapsedTime;
         private IMovementSource _movementSource;
 
         private void Start()
@@ -23,17 +23,17 @@ namespace NebusokuDev.FXPlayer.Samples.FootStepSystem.Emitter
             var isMoving = _movementSource.Velocity.sqrMagnitude > velocityThreshold * velocityThreshold;
             var isGrounded = _movementSource.IsGrounded;
 
-
-            tickTime += Time.deltaTime;
-            
             if (isMoving == false || isGrounded == false) return;
-            if (tickTime < 60f / rpm) return;
+            if (IsTimeOver == false) return;
 
             TimerReset();
 
             OnFootStep?.Invoke();
         }
 
-        private void TimerReset() => tickTime = 0f;
+
+        private bool IsTimeOver => Time.time - _elapsedTime >= 60f / rpm;
+
+        private void TimerReset() => _elapsedTime = Time.time;
     }
 }
