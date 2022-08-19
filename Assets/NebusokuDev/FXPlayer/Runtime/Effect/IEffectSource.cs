@@ -2,7 +2,7 @@
 
 namespace NebusokuDev.FXPlayer.Runtime.Effect
 {
-    public interface IEffect
+    public interface IEffectSource
     {
         void Play(Vector3 position, Quaternion rotation, Transform parent);
 

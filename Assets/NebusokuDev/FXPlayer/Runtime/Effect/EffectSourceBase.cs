@@ -2,7 +2,7 @@
 
 namespace NebusokuDev.FXPlayer.Runtime.Effect
 {
-    public abstract class EffectBase : MonoBehaviour, IEffect
+    public abstract class EffectSourceBase : MonoBehaviour, IEffectSource
     {
         protected Transform self;
 

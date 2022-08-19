@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace NebusokuDev.FXPlayer.Runtime
+namespace NebusokuDev.FXPlayer.Runtime.Core
 {
     public abstract class CueSheetBase<T> : ScriptableObject
     {

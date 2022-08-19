@@ -8,16 +8,17 @@ using Random = UnityEngine.Random;
 namespace NebusokuDev.FXPlayer.Runtime.Effect
 {
     [Serializable]
-    public class EffectCue : CueBase<IEffect>
+    public class EffectCue
     {
         [SerializeField] private string cueName;
-        [SerializeField] private EffectBase[] effects;
+        [SerializeField] private EffectSourceBase[] effects;
         [SerializeField] private float minScale = 1f;
         [SerializeField] private float maxScale;
         [SerializeField] private bool sticky;
-        private List<IEffect> _effectList;
+        
+        private List<IEffectSource> _effectList;
 
-        public override string CueName => cueName;
+        public string CueName => cueName;
 
         public void OnValidate()
         {
@@ -28,11 +29,11 @@ namespace NebusokuDev.FXPlayer.Runtime.Effect
         }
 
 
-        private IEffect Effect
+        private IEffectSource EffectSource
         {
             get
             {
-                _effectList ??= new List<IEffect>();
+                _effectList ??= new List<IEffectSource>();
 
                 var scale = Random.Range(minScale, maxScale);
 
@@ -59,16 +60,15 @@ namespace NebusokuDev.FXPlayer.Runtime.Effect
             }
         }
 
-
-        public override void Play(Vector3 position, Quaternion rotation, Transform parent)
+        public void Play(Vector3 position, Quaternion rotation, Transform parent)
         {
-            var effect = Effect;
+            var effect = EffectSource;
             if (effect == null) return;
 
             effect.Play(position, rotation, sticky ? parent : null);
         }
 
-        public override void Stop()
+        public void Stop()
         {
             foreach (var effect in _effectList)
             {

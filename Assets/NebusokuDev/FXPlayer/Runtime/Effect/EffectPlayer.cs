@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using NebusokuDev.FXPlayer.Runtime.Core;
+using UnityEngine;
 
 namespace NebusokuDev.FXPlayer.Runtime.Effect
 {
@@ -9,25 +10,32 @@ namespace NebusokuDev.FXPlayer.Runtime.Effect
         [SerializeField] private bool selfOwned;
         private Transform _self;
 
-        private void Awake() => _self = transform;
+        private void Awake()
+        {
+            _self = transform;
+            _state = new FxState();
+        }
 
+
+        public IFxState State => _state;
+        private FxState _state;
 
         public void Play(string cueName)
         {
             Play(cueName,
-                 _self.position,
-                 Quaternion.LookRotation(_self.rotation * direction),
-                 selfOwned ? _self : null
+                _self.position,
+                Quaternion.LookRotation(_self.rotation * direction),
+                selfOwned ? _self : null
             );
         }
 
 
         public void Play(string fxName, Vector3 position) =>
-                Play(fxName, position, Quaternion.identity, selfOwned ? _self : null);
+            Play(fxName, position, Quaternion.identity, selfOwned ? _self : null);
 
 
         public void Play(string fxName, Vector3 position, Transform parent) =>
-                Play(fxName, position, Quaternion.identity, selfOwned ? _self : parent);
+            Play(fxName, position, Quaternion.identity, selfOwned ? _self : parent);
 
 
         public void Play(string cueName, Vector3 position, Quaternion rotate, Transform parent)

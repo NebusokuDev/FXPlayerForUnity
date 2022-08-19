@@ -1,39 +1,51 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 namespace NebusokuDev.FXPlayer.Runtime.Sound.Unity
 {
     [CreateAssetMenu(menuName = "FxPlayer/Sound/" + nameof(UnitySoundCueSheet))]
-    public class UnitySoundCueSheet : CueSheetBase<UnityAudioCue>, IEnumerable<UnityAudioCue>
+    public class UnitySoundCueSheet : UnityAudioCueSheetBase
     {
-        [SerializeField] private UnityAudioCue[] audioCues;
+        [SerializeField] private string regexPattern = "*";
+        [SerializeReference, SubclassSelector] private UnityAudioCueBase[] audioCues;
+
+        private List<KeyValuePair<int, UnityAudioCueBase>> _matchedCues;
 
         private void OnValidate()
         {
             foreach (var audioCue in audioCues) audioCue.OnValidate();
         }
 
-        private IEnumerable<UnityAudioCue> AudioCues => audioCues;
+        private IEnumerable<UnityAudioCueBase> AudioCues => audioCues;
 
-        public override UnityAudioCue this[string cueName]
+        public override UnityAudioCueBase this[string cueName]
         {
             get
             {
+                var format = $"{cueName}{regexPattern}";
+
                 if (audioCues == null) return null;
+
+                _matchedCues ??= new List<KeyValuePair<int, UnityAudioCueBase>>();
+
+                _matchedCues.Clear();
 
                 foreach (var cue in audioCues)
                 {
-                    if (cue.CueName == cueName) return cue;
+                    var rex = Regex.Match(cue.CueName, format);
+
+                    if (rex.Success)
+                    {
+                        _matchedCues.Add(new KeyValuePair<int, UnityAudioCueBase>(rex.Length, cue));
+                    }
                 }
 
-                return null;
+                return _matchedCues.FirstOrDefault().Value;
             }
         }
 
-        public IEnumerator<UnityAudioCue> GetEnumerator() => AudioCues.GetEnumerator();
-
-
-        IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable) AudioCues).GetEnumerator();
+        public override IEnumerator<UnityAudioCueBase> GetEnumerator() => AudioCues.GetEnumerator();
     }
 }

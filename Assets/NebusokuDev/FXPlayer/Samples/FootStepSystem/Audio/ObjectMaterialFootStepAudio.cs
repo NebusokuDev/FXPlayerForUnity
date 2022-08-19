@@ -1,5 +1,4 @@
-﻿using System;
-using NebusokuDev.FXPlayer.Samples.FootStepSystem.ObjectMaterial;
+﻿using NebusokuDev.FXPlayer.Samples.FootStepSystem.ObjectMaterial;
 using UnityEngine;
 using static UnityEngine.QueryTriggerInteraction;
 using static UnityEngine.Physics;
@@ -73,9 +72,11 @@ namespace NebusokuDev.FXPlayer.Samples.FootStepSystem.Audio
 #if UNITY_EDITOR
         private void OnDrawGizmos()
         {
-            var ray = new Ray(transform.position, -transform.up);
+            if (self == null) self = transform;
 
-            Gizmos.DrawRay(transform.position + collisionOffset, -transform.up * collisionDistance);
+            var ray = new Ray(self.position, -self.up);
+
+            Gizmos.DrawRay(ray.origin + collisionOffset, ray.direction * collisionDistance);
         }
 #endif
 

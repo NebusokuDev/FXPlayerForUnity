@@ -1,4 +1,6 @@
-﻿namespace NebusokuDev.FXPlayer.Runtime.Sound
+﻿using NebusokuDev.FXPlayer.Runtime.Core;
+
+namespace NebusokuDev.FXPlayer.Runtime.Sound
 {
     public interface ISoundPlayer : IFxPlayer
     {

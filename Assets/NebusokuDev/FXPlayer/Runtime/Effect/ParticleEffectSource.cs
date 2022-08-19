@@ -2,7 +2,7 @@
 
 namespace NebusokuDev.FXPlayer.Runtime.Effect
 {
-    public class ParticleEffect : EffectBase
+    public class ParticleEffectSource : EffectSourceBase
     {
         private ParticleSystem _particle;
 

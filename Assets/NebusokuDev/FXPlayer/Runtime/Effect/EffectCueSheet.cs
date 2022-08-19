@@ -3,7 +3,7 @@
 namespace NebusokuDev.FXPlayer.Runtime.Effect
 {
     [CreateAssetMenu(menuName = "FxPlayer/Effect/EffectCueSheet")]
-    public class EffectCueSheet : CueSheetBase<EffectCue>
+    public class EffectCueSheet : ScriptableObject
     {
         [SerializeField] private EffectCue[] effectCues;
 
@@ -15,7 +15,7 @@ namespace NebusokuDev.FXPlayer.Runtime.Effect
         }
 #endif
 
-        public override EffectCue this[string cueName]
+        public EffectCue this[string cueName]
         {
             get
             {

@@ -1,20 +1,26 @@
-﻿using UnityEngine;
+﻿using NebusokuDev.FXPlayer.Runtime.Core;
+using UnityEngine;
 
 namespace NebusokuDev.FXPlayer.Runtime.Sound.Unity
 {
     public class UnitySoundPlayer : SoundPlayerBase
     {
-        [SerializeField] private UnitySoundCueSheet cueSheet;
+        [SerializeField] protected UnityAudioCueSheetBase cueSheet;
         [SerializeField, Range(0f, 1f)] private float volume = 1f;
         [SerializeField] private bool playAtParent;
         [SerializeField] private bool isMute;
-        
+
         private Transform _self;
 
+        public override IFxState State => _state;
+        private FxState _state;
+        
         private void Awake()
         {
             _self = transform;
             SetMute(isMute);
+
+            _state = new FxState();
         }
 
         public override void Play(string fxName) => Play(fxName, _self.position);
@@ -28,7 +34,7 @@ namespace NebusokuDev.FXPlayer.Runtime.Sound.Unity
 
             var cue = cueSheet[fxName];
 
-            cue?.Play(Volume, _self.position, parent);
+            cue?.Play(Volume, _self.position, parent, State);
         }
 
         public override void Stop(string fxName)
